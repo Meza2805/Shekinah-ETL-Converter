@@ -68,9 +68,9 @@ class ExcelToSQLApp:
         self.root.geometry(f'{width}x{height}+{x}+{y}')
 
     def _setup_icons(self):
-        if os.path.exists("shekinah_logo.png"):
+        if os.path.exists("icono.ico"):
             try:
-                self.icon_img_ref = tk.PhotoImage(file="shekinah_logo.png")
+                self.icon_img_ref = tk.PhotoImage(file="icono.ico")
                 self.root.iconphoto(True, self.icon_img_ref)
                 return
             except: pass
@@ -354,7 +354,7 @@ class ExcelToSQLApp:
     def save_file(self) -> None:
         # VALIDACIÓN: Si no hay script generado, mostrar alerta y salir
         if not self.is_generated or not self.full_create_sql:
-            messagebox.showwarning("Atención", "⚠️ Primero debes generar el script antes de guardar.", parent=self.root, icon='warning')
+            messagebox.showwarning("Atención", "Primero debes generar el script antes de guardar.", parent=self.root, icon='warning')
             return
 
         f = filedialog.asksaveasfilename(defaultextension=".sql", filetypes=[("SQL Script", "*.sql")], initialfile=f"script_{self.table_name.get()}.sql")
@@ -366,7 +366,7 @@ class ExcelToSQLApp:
                     file.write(self.full_insert_sql)
                 
                 # Mensaje de éxito
-                messagebox.showinfo("Guardado", "✅ Archivo exportado correctamente.\n\nLa aplicación se limpiará para un nuevo proceso.", parent=self.root, icon='info')
+                messagebox.showinfo("Guardado", "Archivo exportado correctamente.\n\nLa aplicación se limpiará para un nuevo proceso.", parent=self.root, icon='info')
                 
                 # LIMPIEZA AUTOMÁTICA
                 self.reset_app()
@@ -382,7 +382,7 @@ class ExcelToSQLApp:
         content = self.full_create_sql if current_tab == 0 else self.full_insert_sql
         self.root.clipboard_clear()
         self.root.clipboard_append(content)
-        self.status_msg.set("📋 Contenido copiado.")
+        self.status_msg.set("Contenido copiado.")
 
 if __name__ == "__main__":
     app_window = ttk.Window(themename="cosmo") 
